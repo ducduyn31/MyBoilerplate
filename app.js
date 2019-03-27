@@ -16,6 +16,6 @@ app.use(transformer);
 
 app.use('/', require('./index.route'));
 
-
+require('./utils/errors/errorHandler');
 
 module.exports = app;
