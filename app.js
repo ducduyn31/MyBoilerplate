@@ -11,7 +11,7 @@ require('./seeds');
  *  Middlewares register
  *
  */
-const transformer = require('transformer');
+const transformer = require('transformer').middleware;
 app.use(transformer);
 
 app.use('/', require('./index.route'));
