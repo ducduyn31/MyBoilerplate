@@ -14,6 +14,10 @@ require('./seeds');
 const transformer = require('transformer').middleware;
 app.use(transformer);
 
+const logger = require('./utils/logger/logger.middleware');
+
+app.use(logger());
+
 app.use('/', require('./index.route'));
 
 require('./utils/errors/errorHandler');

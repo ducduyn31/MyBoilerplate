@@ -1,12 +1,41 @@
-module.exports = {
+const Joi = require('joi');
+
+const envVarsSchema = Joi.object({
+    MONGO_AUTH:
+        Joi.boolean()
+            .default(false),
+    MONGO_HOST:
+        Joi.string()
+            .default('localhost'),
+    MONGO_PORT:
+        Joi.number()
+            .default(27017),
+    MONGO_USER:
+        Joi.string()
+            .default('root'),
+    MONGO_PASSWORD:
+        Joi.string()
+            .default('secret'),
+    MONGO_DB:
+        Joi.string()
+            .default('test')
+}).unknown().required();
+
+const {error, value: envVars} = Joi.validate(process.env, envVarsSchema);
+if (error) throw new Error(`Config validation error: ${error.message}`);
+
+
+const config = {
     auth: {
-        activate: process.env.MONGO_AUTH,
-        username: process.env.MONGO_USER || 'root',
-        password: process.env.MONGO_PASSWORD || 'secret',
+        activate: envVars.MONGO_AUTH,
+        username: envVars.MONGO_USER,
+        password: envVars.MONGO_PASSWORD,
     },
-    host: process.env.MONGO_HOST || 'localhost',
-    port: process.env.MONGO_PORT || 27017,
+    host: envVars.MONGO_HOST,
+    port: envVars.MONGO_PORT,
     database: {
-        default: process.env.MONGO_DB || 'oauth',
+        default: envVars.MONGO_DB,
     }
 };
+
+module.exports = config;
