@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('config');
+const logger = require('./logger');
 
 /**
  * Get the mongo uri of the provided database (default database in config
@@ -29,7 +30,7 @@ const resolveMongoUrl = (database = null) => {
 
 // On Error listener
 const onError = (reason) => {
-    console.log(reason);
+    logger.error(reason);
 };
 
 //  Change mongoose Promise type

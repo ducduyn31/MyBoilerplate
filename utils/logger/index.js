@@ -1,18 +1,28 @@
-const logger = require('./extremeLogger');
+const config = require('config');
+const logger = require('./extremeLogger')(config.get('local.env') !== 'development');
 const _ = require('lodash');
 
+const CENSOR_FIELDS = ['password'];
+
 module.exports = {
-    info(message, ...optionalParams) {
-        logger.info({
-            msg: message
-        });
+    debug(message, isPublic = false) {
+        msg = message;
+        if (isPublic && typeof message === 'object')
+            msg = _.pickBy(msg, field => _.includes(CENSOR_FIELDS, field));
+        logger.debug(msg);
     },
-    resource(from, to, resource, censor = []) {
-        const msg = _.pickBy(resource, key => !_.includes(censor, key));
-        logger.info({
-            from,
-            to,
-            msg,
-        });
+    info(message) {
+        if (typeof message === 'object')
+            logger.info(_.pickBy(message, field => _.includes(CENSOR_FIELDS, field)));
+        else
+            logger.info(message)
+    },
+    error(err) {
+        logger.error(err);
+    },
+    fatal(extremeErr) {
+        logger.fatal(extremeErr);
     }
 };
+
+module.exports.logger = logger;
