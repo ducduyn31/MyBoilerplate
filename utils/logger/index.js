@@ -22,6 +22,9 @@ module.exports = {
     },
     fatal(extremeErr) {
         logger.fatal(extremeErr);
+    },
+    resource(to, message) {
+        logger.info({to}, message);
     }
 };
 
