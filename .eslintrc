@@ -1,7 +1,7 @@
 {
   "rules": {
     "indent": [
-      2,
+      "error",
       2,
       {
         "SwitchCase": 1
@@ -38,14 +38,21 @@
         ]
       }
     ],
-    "global-require": "off"
+    "global-require": "off",
+    "class-methods-use-this": "warn",
+    "camelcase": [
+      "error",
+      {
+        "ignoreDestructuring": true
+      }
+    ]
   },
   "env": {
     "node": true,
     "mocha": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module"
   },
   "extends": [
