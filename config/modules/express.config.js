@@ -3,5 +3,5 @@ module.exports = {
     caseSensitive: true,
     mergeParams: true,
     strict: false,
-  }
+  },
 };

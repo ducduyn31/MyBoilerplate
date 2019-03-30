@@ -31,7 +31,7 @@ const resolveMongoUrl = (database = null) => {
 };
 
 // On Error listener
-const onError = (reason) => {
+const onError = reason => {
   logger.error(reason);
 };
 
@@ -39,20 +39,23 @@ const onError = (reason) => {
 mongoose.Promise = require('bluebird');
 
 module.exports.connect = () => {
-  const auth = config.get('mongo.auth.activate') ? {
-    auth: { authSource: 'admin' },
-    user: config.get('mongo.auth.username'),
-    pass: config.get('mongo.auth.password'),
-  } : {};
+  const auth = config.get('mongo.auth.activate')
+    ? {
+        auth: { authSource: 'admin' },
+        user: config.get('mongo.auth.username'),
+        pass: config.get('mongo.auth.password'),
+      }
+    : {};
 
-  mongoose.connect(resolveMongoUrl(), {
-    autoIndex: true,
-    useNewUrlParser: true,
-    keepAlive: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    ...auth,
-  })
+  mongoose
+    .connect(resolveMongoUrl(), {
+      autoIndex: true,
+      useNewUrlParser: true,
+      keepAlive: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+      ...auth,
+    })
     .catch(reason => onError(reason));
   return mongoose.connection;
 };

@@ -1,4 +1,7 @@
 {
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
     "indent": [
       "error",
@@ -45,7 +48,8 @@
       {
         "ignoreDestructuring": true
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   },
   "env": {
     "node": true,
@@ -60,6 +64,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:prettier/recommended"
   ]
 }
