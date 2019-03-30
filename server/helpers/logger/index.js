@@ -7,11 +7,17 @@ const CENSOR_FIELDS = ['password'];
 module.exports = {
   debug(message, isPublic = false) {
     let msg = message;
-    if (isPublic && typeof message === 'object') { msg = _.pickBy(msg, field => _.includes(CENSOR_FIELDS, field)); }
+    if (isPublic && typeof message === 'object') {
+      msg = _.pickBy(msg, field => _.includes(CENSOR_FIELDS, field));
+    }
     logger.debug(msg);
   },
   info(message) {
-    if (typeof message === 'object') { logger.info(_.pickBy(message, field => _.includes(CENSOR_FIELDS, field))); } else { logger.info(message); }
+    if (typeof message === 'object') {
+      logger.info(_.pickBy(message, field => _.includes(CENSOR_FIELDS, field)));
+    } else {
+      logger.info(message);
+    }
   },
   error(err) {
     logger.error(err);
@@ -21,7 +27,7 @@ module.exports = {
   },
   resource(to, message) {
     logger.info({ from: config.get('local.name'), to }, message);
-  }
+  },
 };
 
 module.exports.logger = logger;

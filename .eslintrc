@@ -1,12 +1,9 @@
 {
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
+    "indent": "off",
     "space-before-function-paren": [
       2,
       {
@@ -45,7 +42,8 @@
       {
         "ignoreDestructuring": true
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   },
   "env": {
     "node": true,
@@ -60,6 +58,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:prettier/recommended"
   ]
 }

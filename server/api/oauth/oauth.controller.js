@@ -1,10 +1,8 @@
-const axios = require('axios/index')
-  .default
-  .create({
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-    },
-  });
+const axios = require('axios/index').default.create({
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+  },
+});
 const qs = require('querystring');
 const config = require('config');
 const jwt = require('jsonwebtoken');
@@ -18,22 +16,22 @@ const callback = async (req, res, next) => {
     const { code } = req.query;
 
     if (code) {
-      let responseData = await axios.post(config.get('oauth.tokenUrl'), qs.stringify({
-        code,
-        grant_type: 'authorization_code',
-        redirect_uri: config.get('oauth.redirectUri'),
-      }), {
-        auth: {
-          username: config.get('oauth.clientId'),
-          password: config.get('oauth.clientSecret'),
+      let responseData = await axios.post(
+        config.get('oauth.tokenUrl'),
+        qs.stringify({
+          code,
+          grant_type: 'authorization_code',
+          redirect_uri: config.get('oauth.redirectUri'),
+        }),
+        {
+          auth: {
+            username: config.get('oauth.clientId'),
+            password: config.get('oauth.clientSecret'),
+          },
         },
-      });
+      );
 
-      const {
-        access_token,
-        refresh_token,
-        expires_in,
-      } = responseData.data;
+      const { access_token, refresh_token, expires_in } = responseData.data;
 
       responseData = await axios.get(`${config.get('oauth.resourceUrl')}`, {
         headers: {
@@ -41,26 +39,28 @@ const callback = async (req, res, next) => {
         },
       });
 
-      const {
-        name,
-        email,
-      } = responseData.data.data.user;
+      const { name, email } = responseData.data.data.user;
 
       if (!email) throw new ApiError('User Not Found', 400, true);
 
-      const user = await User.findOneOrCreate({ email }, {
-        name,
-        accessToken: access_token,
-        refreshToken: refresh_token,
-        expiresAt: new Date() + expires_in,
-      });
+      const user = await User.findOneOrCreate(
+        { email },
+        {
+          name,
+          accessToken: access_token,
+          refreshToken: refresh_token,
+          expiresAt: new Date() + expires_in,
+        },
+      );
 
-      const token = jwt.sign({
-        user: user._id,
-      }, config.get('local.jwtSecret'));
+      const token = jwt.sign(
+        {
+          user: user._id,
+        },
+        config.get('local.jwtSecret'),
+      );
 
-      res.transformer.item(token, new TokenTransformer())
-        .dispatch();
+      res.transformer.item(token, new TokenTransformer()).dispatch();
     } else {
       res.transformer.errorUnauthorized('Invalid Authorization Code');
     }

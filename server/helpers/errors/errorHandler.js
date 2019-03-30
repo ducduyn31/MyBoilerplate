@@ -23,11 +23,16 @@ app.use((req, res, next) => {
   return next(err);
 });
 
-app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
+app.use((
+  err,
+  req,
+  res,
+  next, // eslint-disable-line no-unused-vars
+) =>
   res.status(err.status).json({
     message: err.isPublic ? err.message : httpStatus[err.status],
-    stack: config.get('local.env') === 'development' ? err.stack : {}
-  })
+    stack: config.get('local.env') === 'development' ? err.stack : {},
+  }),
 );
 
 module.exports = app;
