@@ -20,7 +20,7 @@ module.exports = {
     logger.fatal(extremeErr);
   },
   resource(to, message) {
-    logger.info({ to }, message);
+    logger.info({ from: config.get('local.name'), to }, message);
   }
 };
 
