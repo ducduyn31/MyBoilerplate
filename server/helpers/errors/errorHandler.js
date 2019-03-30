@@ -1,6 +1,6 @@
 const app = require('../express');
 const expressValidation = require('express-validation');
-const httpStatus = require('http-status');
+const httpStatus = require('http-status/lib/index');
 const config = require('config');
 
 const APIError = require('./APIError');

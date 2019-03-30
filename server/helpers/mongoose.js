@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('server/helpers/mongoose');
 const config = require('config');
 const logger = require('./logger');
 

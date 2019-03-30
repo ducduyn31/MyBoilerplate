@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const logger = require('./utils/logger');
+const logger = require('./server/helpers/logger');
 
 router.get('/test', (req, res) => {
     res.json('ok');

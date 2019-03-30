@@ -1,7 +1,7 @@
 global.Promise = require('bluebird');
 
-const app = require('./utils/express');
-const db = require('./utils/mongoose');
+const app = require('./server/helpers/express');
+const db = require('./server/helpers/mongoose');
 
 db.connect();
 
@@ -14,12 +14,12 @@ require('./seeds');
 const transformer = require('transformer').middleware;
 app.use(transformer);
 
-const logger = require('./utils/logger/logger.middleware');
+const logger = require('./server/helpers/logger/logger.middleware');
 
 app.use(logger());
 
 app.use('/', require('./index.route'));
 
-require('./utils/errors/errorHandler');
+require('./server/helpers/errors/errorHandler');
 
 module.exports = app;

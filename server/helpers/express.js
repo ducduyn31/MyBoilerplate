@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('server/helpers/express');
 const app = express();
 const compress = require('compression');
 const helmet = require('helmet');
