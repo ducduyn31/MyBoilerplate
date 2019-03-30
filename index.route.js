@@ -1,8 +1,7 @@
 const router = require('express').Router();
-const logger = require('./utils/logger');
 
-router.get('/test', (req, res) => {
-    res.json('ok');
-});
+const oauthRoutes = require('./components/oauth/oauth.route');
+
+router.use('/oauth', oauthRoutes);
 
 module.exports = router;
