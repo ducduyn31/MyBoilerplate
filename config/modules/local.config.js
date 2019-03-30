@@ -3,10 +3,10 @@ const Joi = require('joi');
 const envVarsSchema = Joi.object({
   PORT:
         Joi.number()
-            .default(3000),
+          .default(3000),
   NODE_ENV:
         Joi.string()
-            .allow(['development', 'test', 'production', 'provision'])
+          .allow(['development', 'test', 'production', 'provision'])
 }).unknown().required();
 
 const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
