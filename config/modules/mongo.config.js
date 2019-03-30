@@ -18,7 +18,17 @@ const envVarsSchema = Joi.object({
             .default('secret'),
     MONGO_DB:
         Joi.string()
-            .default('test')
+            .default('test'),
+    MONGO_DB_USER:
+        Joi.string()
+            .allow('')
+            .optional()
+            .default(null),
+    MONGO_DB_PASSWORD:
+        Joi.string()
+            .allow('')
+            .optional()
+            .default(null),
 }).unknown().required();
 
 const {error, value: envVars} = Joi.validate(process.env, envVarsSchema);
@@ -35,6 +45,10 @@ const config = {
     port: envVars.MONGO_PORT,
     database: {
         default: envVars.MONGO_DB,
+    },
+    databaseAuth: {
+        username: envVars.MONGO_DB_USER,
+        password: envVars.MONGO_DB_PASSWORD,
     }
 };
 
