@@ -37,12 +37,19 @@ const onError = (reason) => {
 mongoose.Promise = require('bluebird');
 
 module.exports.connect = () => {
+    const auth = config.get('mongo.auth.activate') ? {
+        auth: {authSource: 'admin'},
+        user: config.get('mongo.auth.username'),
+        pass: config.get('mongo.auth.password'),
+    } : {};
+
     mongoose.connect(resolveMongoUrl(), {
         autoIndex: true,
         useNewUrlParser: true,
         keepAlive: true,
         useFindAndModify: false,
         useCreateIndex: true,
+        ...auth,
     }).catch(reason => onError(reason));
     return mongoose.connection;
 };
