@@ -3,13 +3,7 @@
     "prettier"
   ],
   "rules": {
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
+    "indent": "off",
     "space-before-function-paren": [
       2,
       {
