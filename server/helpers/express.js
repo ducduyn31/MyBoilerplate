@@ -1,11 +1,12 @@
-const express = require('server/helpers/express');
-const app = express();
+require('dotenv')
+  .config();
+
+const express = require('express');
 const compress = require('compression');
 const helmet = require('helmet');
 const cors = require('cors');
 
-
-require('dotenv').config();
+const app = express();
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -13,7 +14,7 @@ const bodyParser = require('body-parser');
 app.use(morgan('dev'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(compress());
 

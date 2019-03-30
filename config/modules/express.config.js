@@ -1,7 +1,7 @@
 module.exports = {
-    router: {
-        caseSensitive: true,
-        mergeParams: true,
-        strict: false,
-    }
+  router: {
+    caseSensitive: true,
+    mergeParams: true,
+    strict: false,
+  }
 };
