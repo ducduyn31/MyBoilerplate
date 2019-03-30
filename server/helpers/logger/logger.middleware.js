@@ -2,7 +2,7 @@ const logger = require('./index');
 const _ = require('lodash');
 
 module.exports = options => {
-  const { enabledHeaders } = options;
+  const { enabledHeaders } = options || {};
   return (req, res, next) => {
     const { headers, body } = req;
     logger.info({
