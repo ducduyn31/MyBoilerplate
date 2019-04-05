@@ -3,7 +3,7 @@
   "version": "0.5.2",
   "private": true,
   "author": "Daniel Ng <ducduy.ababat@gmail.com>",
-  "main": "bin/www",
+  "main": "i",
   "engines": {
     "node": ">=8.10.0",
     "npm": ">=5.6.0",
@@ -27,6 +27,7 @@
     "compression": "^1.7.4",
     "config": "^3.0.1",
     "cors": "^2.8.5",
+    "d-transformer": "false0.1.0",
     "debug": "~2.6.9",
     "dotenv": "^7.0.0",
     "express": "~4.16.0",
@@ -38,8 +39,7 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.4.19",
     "morgan": "~1.9.0",
-    "pino": "^5.12.0",
-    "transformer": "git+http://afa107ac7efc925ed71190f0e8e68f7d28d5112e:x-oauth-basic@g.lifetek.vn/duyng/Express_Response_Transformer.git"
+    "pino": "^5.12.0"
   },
   "devDependencies": {
     "chai": "4.1.2",

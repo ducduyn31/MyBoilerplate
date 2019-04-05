@@ -895,6 +895,14 @@ cz-conventional-changelog@^2.1.0:
     right-pad "^1.0.1"
     word-wrap "^1.0.3"
 
+d-transformer@false0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/d-transformer/-/d-transformer-0.1.0.tgz#46354536ca7613d91727dc6019ae1b74f10def2d"
+  integrity sha512-H5Gb0bDDIEQcpvhdXrguJVuJO224DON3i73gmvpe1X+HaqPyDupkHax2osL5EqSr7jPRDC0F37vFKAmZ4rEtmQ==
+  dependencies:
+    bluebird "^3.5.3"
+    lodash "^4.17.11"
+
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -4570,12 +4578,6 @@ tough-cookie@~2.4.3:
   dependencies:
     psl "^1.1.24"
     punycode "^1.4.1"
-
-"transformer@git+http://afa107ac7efc925ed71190f0e8e68f7d28d5112e:x-oauth-basic@g.lifetek.vn/duyng/Express_Response_Transformer.git":
-  version "0.5.1"
-  resolved "git+http://afa107ac7efc925ed71190f0e8e68f7d28d5112e:x-oauth-basic@g.lifetek.vn/duyng/Express_Response_Transformer.git#02bdb40111d38ba9e06705915fe8029343c7e208"
-  dependencies:
-    lodash "^4.17.11"
 
 trim-right@^1.0.1:
   version "1.0.1"
